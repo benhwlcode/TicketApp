@@ -7,7 +7,10 @@ AS
 begin
 	set nocount on
 
-	select e.* from dbo.[Events] e
+	select e.Id, e.Name, e.[Description], e.DetailsLink, e.VenueId,
+		e.StartDate, e.StartTime, e.EndDate, e.EndTime, 
+		e.IsSoldOut, e.IsCompleted
+	from dbo.[Events] e
 	inner join dbo.Venues v 
 	on v.Id = e.VenueId
 	inner join dbo.Addresses a

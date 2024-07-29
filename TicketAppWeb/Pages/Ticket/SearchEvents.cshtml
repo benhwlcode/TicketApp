@@ -1,0 +1,49 @@
+﻿@page
+@model TicketAppWeb.Pages.Ticket.SearchEventsModel
+@{
+	ViewData["Title"] = "Search Events";
+}
+
+
+
+@if (Model.AvailableEvents.Count > 0)
+{
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Event Name</th>
+				<th>Start Time</th>
+				<th>Details Link</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var e in Model.AvailableEvents)
+			{
+				<tr>
+					<td>
+						<strong>@e.Name</strong><br/>
+						@e.Description
+					</td>
+					<td>
+						@e.StartDate <br/>
+						@e.StartTime
+					</td>
+					<td>
+						<br/>
+						<a href="https://@e.DetailsLink">
+							Event Page
+						</a>
+					</td>
+					<td>
+						<br />
+						<a asp-page="/Ticket/EventTickets"
+							asp-route-eventid="@e.Id">
+							Buy Tickets
+						</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

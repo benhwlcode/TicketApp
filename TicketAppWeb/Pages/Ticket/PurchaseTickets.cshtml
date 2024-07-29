@@ -1,0 +1,44 @@
+﻿@page
+@model TicketAppWeb.Pages.Ticket.PurchaseTicketsModel
+@{
+	ViewData["Title"] = "Purchase Tickets";
+}
+
+<div>
+
+	<h1>@Model.TicketToPurchase.Name</h1>
+	<h2>@Model.TicketToPurchase.Description</h2>
+
+</div>
+
+<form method="post">
+	<div class="form-group">
+		<label asp-for="@Model.FirstName"></label>
+		<input asp-for="@Model.FirstName"
+			required />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.LastName"></label>
+		<input asp-for="@Model.LastName"
+			required />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.PhoneNumber"></label>
+		<input asp-for="@Model.PhoneNumber"
+			required />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.EmailAddress"></label>
+		<input asp-for="@Model.EmailAddress" 
+			required />
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.SeatsToPurchase"></label>
+		<input asp-for="@Model.SeatsToPurchase"
+			   min="1" max="@Model.TicketToPurchase.PerGuestLimit" step="1" required />
+	</div>
+	<button type="submit" class="btn btn-primary">Purchase</button>
+
+</form>
+
+

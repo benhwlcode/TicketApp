@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace TicketAppLibrary.Models
 {
-	public class EventModel
+	public class EventFullModel
 	{
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string DetailsLink { get; set; }
-        public int VenueId { get; set; }
+
         public DateOnly StartDate { get; set; }
         public TimeSpan StartTime { get; set; }
         public DateOnly EndDate { get; set; }
         public TimeSpan EndTime { get; set; }
-        public bool IsSoldOut { get; set; }        
-        public bool IsCompleted { get; set; }      
+
+        public string VenueName { get; set; }
+        public string AddressStreet { get; set; }
+        public string AddressMunicipal { get; set; }
+        public string AddressCountry { get; set; }
+
 
 
     }

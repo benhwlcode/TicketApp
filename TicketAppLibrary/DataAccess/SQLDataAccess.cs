@@ -3,10 +3,12 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TicketAppLibrary.Helpers;
 
 namespace TicketAppLibrary.DataAccess
 {
@@ -44,7 +46,9 @@ namespace TicketAppLibrary.DataAccess
 
 			using (IDbConnection connection = new SqlConnection(connectionString))
 			{
-				List<T> rows = connection.Query<T>(sqlStatement, parameter, commandType: commandType)
+                SqlMapper.AddTypeHandler(typeof(DateOnly), new DateOnlyHandler());
+
+                List<T> rows = connection.Query<T>(sqlStatement, parameter, commandType: commandType)
 					.ToList();
 
 				return rows;

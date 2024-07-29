@@ -1,0 +1,59 @@
+﻿@page
+@model TicketAppWeb.Pages.Ticket.EventTickets
+@{
+	ViewData["Title"] = "Event Tickets";
+}
+
+<h1>@Model.EventFull.Name</h1>
+<p>This is a test paragraph to ensure all information are present.</p>
+<p>The event will take place on @Model.EventFull.StartDate 
+	from @Model.EventFull.StartTime to @Model.EventFull.EndTime. 
+	The location will be at @Model.EventFull.VenueName, 
+	@Model.EventFull.AddressStreet, @Model.EventFull.AddressMunicipal, @Model.EventFull.AddressCountry.
+</p>
+
+
+
+
+@if (Model.AvailableTickets.Count > 0)
+{
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Ticket</th>
+					<th>Price</th>
+					<th>Tickets Available</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var t in Model.AvailableTickets)
+				{
+					<tr>
+						<td>
+							<strong>@t.Name</strong> <br />
+							@t.Description
+						</td>
+						<td>
+							@string.Format("{0:C}", @t.Price)
+						</td>
+						<td>
+							@(t.MaxSeatsCount - t.SeatsSoldCount)
+						</td>
+						<td>
+							<br />
+							<a asp-page="/Ticket/PurchaseTickets"
+							   asp-route-ticketid="@t.Id">
+								Purchase&nbsp;Tickets
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		
+
+
+}
+
+
